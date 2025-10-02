@@ -28,11 +28,12 @@ def find_jobs():
         if 'few' in published_date:
 
 
-            # achando o nome da compania desse primeiro emprego.
-            company_name = job.find('h3', class_ = 'joblist-comp-name').text.replace(' ','')
+            # achando o nome da compania desse primeiro emprego. 
+            # Utilizei agora a funcão join para fazer a limpeza correta e separar corretamente o nome da empresa.
+            company_name = ' '.join(job.find('h3', class_ = 'joblist-comp-name').text.split())
 
             # achando as skills desse emprego. OBS: diferente da aula, o site nao utiliza mais span, e sim div para guardar as skils, e o nome também está diferente.
-            skills = job.find('div', class_ = 'more-skills-sections').text.replace(' ','')
+            skills = ' '.join(job.find('div', class_ = 'more-skills-sections').text.split())
 
             # pegando o link de mais informações
             more_info = job.header.h2.a['href']
@@ -48,7 +49,6 @@ def find_jobs():
                     f.write(f'More info: {more_info}\n')
 
                 print("File saved: {index}")
-
 
 # Se esse foi o arquivo main na abertura do programa
 if __name__ == '__main__':
