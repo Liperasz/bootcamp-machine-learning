@@ -1,3 +1,0 @@
-Company name: 3Embed Software Technologies 
-Required Skills: python django rest api operating system mysql data structures hadoop mvc mongodb 
-More info: https://www.timesjobs.com/job-detail/python-developers-3embed-software-technologies-bengaluru-bangalore-1-to-3-yrs-jobid-1bU__SLASH__OACkbzFzpSvf__PLUS__uAgZw==&source=srp
