@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 # abrindo o arquivo html com a função "read"
 with open('home.html', 'r') as html_file:
 
-    "função que lê o html"
+    # função que lê o html
     content = html_file.read()
 
     # lendo o arquivo html como lxml agora, através da beautifulsoup, que organiza melhor a leitura
