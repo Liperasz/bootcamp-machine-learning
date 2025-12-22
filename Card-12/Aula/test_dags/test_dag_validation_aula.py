@@ -1,12 +1,15 @@
 import pytest
 from airflow.models import DagBag
 
+# define uma classe de testes para validação das DAGs
 class TestDagValidation:
 
+    # constantes usadas nos testes
     LOAD_SECOND_THRESHOLD = 2
     REQUIRED_EMAIL = "owner@test.com"
     EXPECTED_NUMBER_OF_DAGS = 7
 
+    # teste para verificar se todas as DAGs são importadas corretamente
     def test_import_dags(self, dagbag):
         """
             Verify that Airflow is able to import all DAGs
@@ -18,6 +21,7 @@ class TestDagValidation:
             dagbag.import_errors
         )
 
+    # teste para verificar se o tempo de carregamento das DAGs está dentro do limite
     def test_time_import_dags(self, dagbag):
         """
             Verify that DAGs load fast enough
@@ -32,6 +36,7 @@ class TestDagValidation:
             res
         )
 
+    # teste para verificar se o email padrão está presente nas DAGs
     @pytest.mark.skip(reason="not yet added to the DAGs")
     def test_default_args_email(self, dagbag):
         """
@@ -42,6 +47,7 @@ class TestDagValidation:
             emails = dag.default_args.get('email', [])
             assert self.REQUIRED_EMAIL in emails, "The mail {0} for sending alerts is missing from the DAG {1}".format(self.REQUIRED_EMAIL, dag_id)
     
+    # teste para verificar se o número de tentativas está definido nas DAGs
     @pytest.mark.skip(reason="not yet added to the DAGs")
     def test_default_args_retries(self, dagbag):
         """
@@ -52,6 +58,7 @@ class TestDagValidation:
             retries = dag.default_args.get('retries', None)
             assert retries is not None, "You must specify a number of retries in the DAG: {0}".format(dag_id)
 
+    # teste para verificar se o tempo de espera entre tentativas está definido nas DAGs
     @pytest.mark.skip(reason="not yet added to the DAGs")
     def test_default_args_retry_delay(self, dagbag):
         """
@@ -62,6 +69,7 @@ class TestDagValidation:
             retry_delay = dag.default_args.get('retry_delay', None)
             assert retry_delay is not None, "You must specify a retry delay (seconds) in the DAG: {0}".format(dag_id)
  
+    # teste para verificar se o número de DAGs está correto
     def test_number_of_dags(self, dagbag):
         """
             Verify if there is the right number of DAGs in the dag folder

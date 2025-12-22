@@ -1,3 +1,6 @@
+#project A e B contém exatamente o mesmo código que backfill.py, mas com nomes diferentes para o dag_id e nomes das tarefas.
+#feitos apenas para teste
+
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 
@@ -8,7 +11,7 @@ default_args = {
     'owner': 'Airflow'
 }
 
-with DAG(dag_id='project_a', schedule_interval="0 0 * * *", default_args=default_args, catchup=False) as dag:
+with DAG(dag_id='project_a_aula', schedule_interval="0 0 * * *", default_args=default_args, catchup=False) as dag:
     
     # Task 1
     bash_task_1 = BashOperator(task_id='bash_task_1', bash_command="echo 'first task'")

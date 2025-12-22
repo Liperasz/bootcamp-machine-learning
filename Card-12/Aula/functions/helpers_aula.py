@@ -1,3 +1,5 @@
+# funções que vao ser chamadas no outro arquivo
+
 def first_task():
     print("Hello from first task")
 
