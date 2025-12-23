@@ -1,0 +1,6 @@
+requests
+apache-airflow
+apache-airflow-providers-http
+pandas
+numpy
+datetime
