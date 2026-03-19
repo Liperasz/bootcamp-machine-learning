@@ -1,0 +1,7 @@
+Usei o comando docker image para listar a nova imagem criada
+
+docker image ls
+                                                             i Info →   U  In Use
+IMAGE              ID             DISK USAGE   CONTENT SIZE   EXTRA
+teste-img:latest   55b53aee086a        371MB          107MB        
+ubuntu:latest      d1e2e92c075e        119MB         31.7MB        

@@ -1,0 +1,9 @@
+Rodei o container para ver se estava funcionando
+
+docker container run -p 8080:80 -it --name teste teste-img sh
+# ls
+arquivo.txt  index.html
+#
+docker container ls -a
+CONTAINER ID   IMAGE       COMMAND   CREATED              STATUS              PORTS                                     NAMES
+864900ba5ad6   teste-img   "sh"      About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   teste

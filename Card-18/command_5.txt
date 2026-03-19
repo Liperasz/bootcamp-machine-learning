@@ -1,0 +1,23 @@
+Aqui eu criei uma outra pasta só para diferenciar, e entao criei 
+uma nova imagem a partir do container
+
+docker container attach teste
+# cd /      
+# mkdir pasta_top
+# ls
+bin   dev  home  lib.usr-is-merged  media  opt	      proc  run   srv  tmp  var
+boot  etc  lib	 lib64		    mnt    pasta_top  root  sbin  sys  usr
+# exit
+docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+docker container ls -a
+CONTAINER ID   IMAGE       COMMAND   CREATED          STATUS                     PORTS     NAMES
+864900ba5ad6   teste-img   "sh"      14 minutes ago   Exited (0) 9 seconds ago             teste
+docker container commit teste teste-new-img
+sha256:faa05546e8bf477d12c0d7a41eb836cfd3c448c190921ff7cfc09d33e4a20256
+docker image ls
+                                                             i Info →   U  In Use
+IMAGE                  ID             DISK USAGE   CONTENT SIZE   EXTRA
+teste-img:latest       55b53aee086a        371MB          107MB    U   
+teste-new-img:latest   faa05546e8bf        371MB          107MB        
+ubuntu:latest          d1e2e92c075e        119MB         31.7MB        

@@ -1,0 +1,16 @@
+Aqui eu criei um novo arquivo dentro do container, e depois fui na pasta de volumes
+para ver se estava lá, e funcionou normalmente
+
+docker container attach teste
+# ls
+arquivo.txt  index.html
+# touch teste.txt
+# read escape sequence
+sudo su
+ls
+30f9d874fbb7084127f7b15975717a233cb5ec4c90319afb60d54fd4f47382eb  metadata.db
+backingFsBlockDev
+cd 30f9d874fbb7084127f7b15975717a233cb5ec4c90319afb60d54fd4f47382eb/
+# cd _data/
+ls
+arquivo.txt  index.html  teste.txt
