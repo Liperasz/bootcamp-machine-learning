@@ -1,0 +1,58 @@
+import airflow
+# importa a fabrica que gera a estrutura das subdags
+from subdags.subdag_aula import factory_subdag 
+from airflow.models import DAG
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.subdag_operator import SubDagOperator 
+from airflow.executors.celery_executor import CeleryExecutor
+
+# Nome da Dag
+DAG_NAME="deadlock_subdag"
+
+# argumentos padrão
+default_args = {
+    'owner': 'Airflow',
+    'start_date': airflow.utils.dates.days_ago(2),
+}
+
+# criação da Dag
+with DAG(dag_id=DAG_NAME, default_args=default_args, schedule_interval="@once") as dag:
+
+    # task vazia para iniciar
+    start = DummyOperator(
+        task_id='start'
+    )
+
+    # Criação de 4 Subdags que rodam em paralelo
+    subdag_1 = SubDagOperator(
+        task_id='subdag-1',
+        subdag=factory_subdag(DAG_NAME, 'subdag-1', default_args), # chama a fabrica que cria a subdag
+        executor=CeleryExecutor() 
+    )
+
+    subdag_2 = SubDagOperator(
+        task_id='subdag-2',
+        subdag=factory_subdag(DAG_NAME, 'subdag-2', default_args), # chama a fabrica que cria a subdag
+        executor=CeleryExecutor()
+    )
+
+    subdag_3 = SubDagOperator(
+        task_id='subdag-3',
+        subdag=factory_subdag(DAG_NAME, 'subdag-3', default_args), # chama a fabrica que cria a subdag
+        executor=CeleryExecutor()
+    )
+
+    subdag_4 = SubDagOperator(
+        task_id='subdag-4',
+        subdag=factory_subdag(DAG_NAME, 'subdag-4', default_args), # chama a fabrica que cria a subdag
+        executor=CeleryExecutor()
+    )
+
+    # task vazia para unificar
+    final = DummyOperator(
+        task_id='final'
+    )
+
+    # fluxo das subdags
+    # inicia as 4 subdags simutaneamente, e só após todas terminarem executa a tarefa final
+    start >> [subdag_1, subdag_2, subdag_3, subdag_4] >> final
